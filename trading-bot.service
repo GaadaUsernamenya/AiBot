@@ -1,0 +1,17 @@
+[Unit]
+Description=AI Trading Bot (HFM/MT5)
+After=network.target
+
+[Service]
+Type=simple
+User=trader
+WorkingDirectory=/home/trader/trading-bot
+EnvironmentFile=/home/trader/trading-bot/.env
+ExecStart=/home/trader/trading-bot/venv/bin/python /home/trader/trading-bot/main.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=append:/home/trader/trading-bot/logs/systemd.log
+StandardError=append:/home/trader/trading-bot/logs/systemd-error.log
+
+[Install]
+WantedBy=multi-user.target
